@@ -3,6 +3,8 @@ package isi.died.parcial01.ejercicio02.dominio;
 import java.util.ArrayList;
 import java.util.List;
 
+import isi.died.parcial01.ejercicio02.dominio.Inscripcion.Estado;
+
 public class Alumno {
 	
 	private static Integer ID_GENERATOR=0;
@@ -23,6 +25,10 @@ public class Alumno {
 	public Alumno(String nombre) {
 		this();
 		this.nombre = nombre;
+	}
+	
+	public List<Examen> getExamenes(){
+		return this.examenes;
 	}
 
 
@@ -47,6 +53,21 @@ public class Alumno {
 	public void addCursada(Inscripcion e) {
 		this.materiasCursadas.add(e);
 		e.setInscripto(this);
+	}
+	
+	public void promocionar(Materia m) {
+		
+		// en principio va a haber por lo menos 1
+		Inscripcion inscripcion = null;
+		
+		// buscar la ultima
+		for (Inscripcion unaInscripcion : this.materiasCursadas) {
+			if(unaInscripcion.getMateria().equals(m)) {
+				inscripcion = unaInscripcion;
+			}
+		}
+		
+		inscripcion.setEstado(Estado.PROMOCIONADO);
 	}
 
 }

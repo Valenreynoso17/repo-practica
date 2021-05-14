@@ -1,5 +1,7 @@
 package isi.died.parcial01.ejercicio02.app;
 
+import java.util.List;
+
 import isi.died.parcial01.ejercicio02.dominio.*;
 
 
@@ -27,5 +29,25 @@ public interface MySysAcad {
 	 */
 	public void inscribirAlumnoExamen(Docente d,Alumno a, Materia m);
 	
+	/*
+	 * Luego agregar a la interface MySysAcad el método "Double promedio(Docente d,Materia m)" 
+	 * que retorna el promedio que obtuvieron quienes riendieron la materia M con el docente D, 
+	 * usando expresiones lambdas.
+	 */
+	public default Double promedio(Docente d, Materia m) {
+		
+		Integer notaTotal = m.getExamenes().stream()
+				  				.filter(mat -> mat.getDocente().equals(d))
+				  				.map(e -> e.getNota())
+				  				.reduce(0, (x,y) -> {return x+y;});
+		
+		Long cantTotal = m.getExamenes().stream()
+  									    .filter(mat -> mat.getDocente().equals(d))
+  									    .count();
+		
+		return (double) (notaTotal/cantTotal);
+	}
 
+	public List<Examen> buscarExamenesReprobados(Alumno a, Materia m);
+	
 }
