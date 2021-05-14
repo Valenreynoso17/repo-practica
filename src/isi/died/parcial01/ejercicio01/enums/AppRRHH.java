@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import isi.died.parcial01.ejercicio01.Empleado;
 
+// Lo pose en el package enums sin querer
 public class AppRRHH {
 	
 	public List<String> algo(ArrayList<Empleado> arregloEmp, Integer mes){

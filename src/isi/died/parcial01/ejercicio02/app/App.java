@@ -6,6 +6,7 @@ import java.util.List;
 import isi.died.parcial01.ejercicio02.dominio.Alumno;
 import isi.died.parcial01.ejercicio02.dominio.Docente;
 import isi.died.parcial01.ejercicio02.dominio.Materia;
+import isi.died.parcial01.ejercicio02.excepciones.NoPoseeCorrelativasException;
 
 public class App {
 
@@ -89,7 +90,12 @@ public class App {
 
 
 		
-		sistema.inscribirAlumnoCursada(prof1, a1, m1,2020);
+		try {
+			sistema.inscribirAlumnoCursada(prof1, a1, m1,2020);
+		} catch (NoPoseeCorrelativasException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		sistema.inscribirAlumnoExamen(prof1, a1, m1);
 	}
